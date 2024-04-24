@@ -1,0 +1,19 @@
+End points to be created
+
+1. Add restraurant
+2. Update restraurant
+3. Delete restaurant
+4. Register user
+5. Update user
+6. Place order
+7. Update order
+8. Delete order
+9. Get restaurant
+10. Get restaurant details
+11. Get users
+12. Get user details
+13. Get orders
+14. Get order details
+15. Register delivery partner
+16. Update delivery partner
+17. Delivery Partner details
