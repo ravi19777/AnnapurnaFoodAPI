@@ -1,4 +1,4 @@
-import joi from 'joi';
+import Joi from 'joi';
 
 const registerController = {
     register(req, res, next) {
@@ -10,6 +10,21 @@ const registerController = {
         // 5. Store in database
         // 6. Generate JWT token
         // 7. Send response
+
+        // validation
+        const registerSchema = Joi.object({
+            name: Joi.string().min(3).max(30).required(),
+            email: Joi.string().email().required(),
+            phone: Joi.number().equal(10).required(),
+            password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3, 30}$')).required(),
+            confirmPassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3, 30}$')).required()
+        });
+
+        const { error } = registerSchema.validate(req.body);
+
+        if (error) {
+            throw error;
+        }
         res.json(
             {
                 "message": "Hello from Express JS!"
