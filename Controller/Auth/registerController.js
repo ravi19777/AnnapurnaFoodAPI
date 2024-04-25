@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const registerController = {
-    register(req, res, next) {
+    async register(req, res, next) {
         // CHECKLIST FOR REGISTER USER
         // 1. Validate the request.
         // 2. Authorise the request.
@@ -17,14 +17,15 @@ const registerController = {
             email: Joi.string().email().required(),
             phone: Joi.number().equal(10).required(),
             password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3, 30}$')).required(),
-            confirmPassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3, 30}$')).required()
+            confirmPassword: Joi.ref('password')
         });
 
         const { error } = registerSchema.validate(req.body);
 
         if (error) {
-            throw error;
+           return next(error);
         }
+
         res.json(
             {
                 "message": "Hello from Express JS!"
