@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ravi19777/AnnapurnaFoodAPI#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "esm": "^3.2.25",
     "express": "^4.19.2",
