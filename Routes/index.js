@@ -1,13 +1,15 @@
 import express from "express";
-import { registerRestro } from "../Controller/Auth/Restro/register";
-import { getRestroList } from "../Controller/Fetch/Restro/getRestroList";
-import { replaceRestroInfo } from "../Controller/Auth/Restro/replaceRestro";
+import restroAuthController from "../Controller/Auth/restroAuthController";
+import restroFetchController from "../Controller/Fetch/restroFetchController";
 
 const router = express.Router();
 
 router
-  .get("/", getRestroList)
-  .post("/register/restaurant", registerRestro)
-  .put("/replace/restaurantInfo/:id", replaceRestroInfo);
+  .get("/", restroFetchController.getRestroList)
+  .get("/restaurant/:id", restroFetchController.getRestro)
+  .post("/register/restaurant", restroAuthController.registerRestro)
+  .put("/replace/restaurantInfo/:id", restroAuthController.replaceRestroInfo)
+  .patch("/update/restaurantInfo/:id", restroAuthController.updateRestroInfo)
+  .delete("/delete/restaurant/:id", restroAuthController.deleteRestro);
 
 export default router;
